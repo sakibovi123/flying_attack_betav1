@@ -9,7 +9,7 @@ public class bird : MonoBehaviour
     private bool _birdLaunched;
     private float _timesittingAround;
 
-    [SerializeField] private float _launchPower = 500;
+    [SerializeField] private float _launchPower = 400;
     
 
     private void Awake()
@@ -71,7 +71,7 @@ public class bird : MonoBehaviour
             string resetScene = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(resetScene);
         }
-
+    
 
     }
 }
