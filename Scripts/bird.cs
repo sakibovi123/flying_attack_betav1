@@ -17,6 +17,13 @@ public class bird : MonoBehaviour
         _initialPosition = transform.position;
     }
 
+
+    private void OnMouseDown()
+    {
+        GetComponent<SpriteRenderer>().color = Color.blue;
+        GetComponent<LineRenderer>().enabled = true;
+    }
+
     private void OnMouseUp()
     {
         GetComponent<SpriteRenderer>().color = Color.blue;
@@ -25,6 +32,9 @@ public class bird : MonoBehaviour
         GetComponent<Rigidbody2D>().AddForce(directionToInitialPosition * _launchPower);
         GetComponent<Rigidbody2D>().gravityScale = 1;
         _birdLaunched = true;
+
+        GetComponent<LineRenderer>().enabled = false;
+
     }
 
     private void OnMouseDrag()
@@ -36,6 +46,13 @@ public class bird : MonoBehaviour
     // reset the game and gave the player another chance to finish the level
     private void Update()
     {
+
+        // Setting a line for launching the bird
+
+        GetComponent<LineRenderer>().SetPosition(0, _initialPosition);
+        GetComponent<LineRenderer>().SetPosition(1, transform.position);
+
+
         // If the bird is idle this method will be pushed
 
         if (_birdLaunched && GetComponent<Rigidbody2D>().velocity.magnitude <= 0.1)
@@ -44,7 +61,12 @@ public class bird : MonoBehaviour
         }
 
 
-        if (transform.position.y > 10 || transform.position.y < -10 || transform.position.x > 10 || transform.position.x < -20 || _timesittingAround > 3)
+        if (transform.position.y > 10 ||
+            transform.position.y < -10 || 
+            transform.position.x > 10 || 
+            transform.position.x < -20 || 
+            _timesittingAround > 3)
+
         {
             string resetScene = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(resetScene);
