@@ -48,9 +48,9 @@ public class bird : MonoBehaviour
     {
 
         // Setting a line for launching the bird
-
-        GetComponent<LineRenderer>().SetPosition(0, _initialPosition);
-        GetComponent<LineRenderer>().SetPosition(1, transform.position);
+        GetComponent<LineRenderer>().SetPosition(0, transform.position);
+        GetComponent<LineRenderer>().SetPosition(1, _initialPosition);
+        
 
 
         // If the bird is idle this method will be pushed
